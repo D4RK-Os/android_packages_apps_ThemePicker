@@ -21,10 +21,12 @@ public class RecentWallpapersProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
-        if (!"/list_recent".equals(uri.getPath())) {
+        String path = uri.getPath();
+        if (path == null || !path.startsWith("/list_recent")) {
             return null;
         }
         MatrixCursor matrixCursor = new MatrixCursor(new String[]{"id", "placeholder_color", "component", "title"});
+        matrixCursor.addRow(new Object[]{"d4rk_current", 0xFF202124, "", ""});
         return matrixCursor;
     }
 
